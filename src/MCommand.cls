@@ -76,11 +76,15 @@ End Property
 '---------------------------------------
 ' ÉeÅ[ÉuÉãÇÃí«â¡
 '---------------------------------------
-Public Sub Append(m As MTable)
+Public Sub Append(m As MTable, Optional ByVal optName As String = "")
 
-    If m.Name = "" Then
-        m.Name = mAliasName & mSeq
-        mSeq = mSeq + 1
+    If optName = "" Then
+        If m.Name = "" Then
+            m.Name = mAliasName & mSeq
+            mSeq = mSeq + 1
+        End If
+    Else
+        m.Name = optName
     End If
     
     mSb.Append m.Name & " = " & m.ToString
