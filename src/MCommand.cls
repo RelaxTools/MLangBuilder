@@ -9,7 +9,7 @@ Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
 '-----------------------------------------------------------------------------------------------------
 '
-' [MFunctionCreater] v1
+' [MLangBuilder] v1
 '
 ' Copyright (c) 2019 Yasuhiro Watanabe
 ' https://github.com/RelaxTools/MFunctionCreater
@@ -36,7 +36,7 @@ Attribute VB_Exposed = False
 ' SOFTWARE.
 '
 '-----------------------------------------------------------------------------------------------------
-' Power Query M functions Command Class
+' Power Query M Language Command Class
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
 
@@ -86,7 +86,7 @@ Public Sub Append(m As MTable, Optional ByVal optName As String = "")
     Else
         m.Name = optName
     End If
-    
+     
     mSb.Append m.Name & " = " & m.ToString
     Set mLast = m
 
@@ -94,15 +94,15 @@ End Sub
 '---------------------------------------
 ' ç≈å„Ç…í«â¡ÇµÇΩÉeÅ[ÉuÉã
 '---------------------------------------
-Public Property Get LastTable() As MTable
-    Set LastTable = mLast
+Public Property Get Table() As MTable
+    Set Table = mLast
 End Property
 '---------------------------------------
 ' ÇlåæåÍê∂ê¨
 '---------------------------------------
 Public Function ToString()
 
-    ToString = "let " & mSb.ToJoin(", ") & " in " & mLast.Name
+    ToString = "let " & vbCrLf & mSb.ToJoin(", " & vbCrLf) & " " & vbCrLf & "in " & mLast.Name
 
 End Function
 

@@ -9,7 +9,7 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 '-----------------------------------------------------------------------------------------------------
 '
-' [MFunctionCreater] v1
+' [MLangBuilder] v1
 '
 ' Copyright (c) 2019 Yasuhiro Watanabe
 ' https://github.com/RelaxTools/MFunctionCreater
@@ -36,7 +36,7 @@ Attribute VB_Exposed = False
 ' SOFTWARE.
 '
 '-----------------------------------------------------------------------------------------------------
-' Power Query M functions File Class
+' Power Query M Language File Class
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
 '---------------------------------------

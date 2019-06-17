@@ -9,7 +9,7 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 '-----------------------------------------------------------------------------------------------------
 '
-' [MFunctionCreater] v1
+' [MLangBuilder] v1
 '
 ' Copyright (c) 2019 Yasuhiro Watanabe
 ' https://github.com/RelaxTools/MFunctionCreater
@@ -36,7 +36,7 @@ Attribute VB_Exposed = False
 ' SOFTWARE.
 '
 '-----------------------------------------------------------------------------------------------------
-' Power Query M functions Table Class
+' Power Query M Language Table Class
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
 Implements IConstructor
@@ -65,25 +65,74 @@ End Function
 '---------------------------------------
 ' PromoteHeaders
 '---------------------------------------
-Public Function PromoteHeaders(t As MTable, ParamArray param() As Variant) As MTable
+Public Function PromoteHeaders(t As MTable, Optional m As Variant) As MTable
 
-    Dim strBuf As String
-    Dim sb As StringBuilder
-    Dim v As Variant
+    Dim strName As String
+    Dim strMFunc As String
     
-    Set sb = New StringBuilder
-
-    For Each v In param
-        sb.Append v
-    Next
-
-    If t.Name = "" Then
-        strBuf = t.ToString
+    If IsMissing(m) Then
+        strMFunc = ""
     Else
-        strBuf = t.Name
+        If TypeOf m Is MRecord Then
+            strMFunc = ", " & m.ToString()
+        Else
+            strMFunc = ", " & m
+        End If
     End If
     
-    Set PromoteHeaders = Constructor(New MTable, GetClassName & "PromoteHeaders(" & strBuf & ", [" & sb.ToJoin(", ") & "])", t)
+    If t.Name = "" Then
+        strName = t.ToString
+    Else
+        strName = t.Name
+    End If
+    
+    Set PromoteHeaders = Constructor(New MTable, GetClassName & "PromoteHeaders(" & strName & strMFunc & ")", t)
+
+End Function
+'---------------------------------------
+' InsertRows
+'---------------------------------------
+Public Function InsertRows(t As MTable, offset As Long, lst As Variant) As MTable
+
+    Dim strName As String
+    Dim strMFunc As String
+    
+    If TypeOf lst Is MList Then
+        strMFunc = lst.ToString
+    Else
+        strMFunc = CStr(lst)
+    End If
+    
+    If t.Name = "" Then
+        strName = t.ToString
+    Else
+        strName = t.Name
+    End If
+    
+    Set InsertRows = Constructor(New MTable, GetClassName & "InsertRows(" & strName & ", " & offset & ", " & strMFunc & ")", t)
+
+End Function
+'---------------------------------------
+' TransformColumnTypes
+'---------------------------------------
+Public Function TransformColumnTypes(t As MTable, lst As Variant) As MTable
+
+    Dim strName As String
+    Dim strMFunc As String
+    
+    If TypeOf lst Is MList Then
+        strMFunc = lst.ToString
+    Else
+        strMFunc = CStr(lst)
+    End If
+    
+    If t.Name = "" Then
+        strName = t.ToString
+    Else
+        strName = t.Name
+    End If
+    
+    Set TransformColumnTypes = Constructor(New MTable, GetClassName & "TransformColumnTypes(" & strName & ", " & strMFunc & ")", t)
 
 End Function
 '---------------------------------------

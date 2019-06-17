@@ -1,2 +1,2 @@
-# MFunctionCreater
-Power Querry M Function Creater
+# MLangBuilder
+Power Querry M Language Builder

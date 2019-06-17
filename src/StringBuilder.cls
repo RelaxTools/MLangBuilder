@@ -9,7 +9,7 @@ Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
 '-----------------------------------------------------------------------------------------------------
 '
-' [MFunctionCreater] v1
+' [MLangBuilder] v1
 '
 ' Copyright (c) 2019 Yasuhiro Watanabe
 ' https://github.com/RelaxTools/MFunctionCreater

@@ -9,7 +9,7 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 '-----------------------------------------------------------------------------------------------------
 '
-' [MFunctionCreater] v1
+' [MLangBuilder] v1
 '
 ' Copyright (c) 2019 Yasuhiro Watanabe
 ' https://github.com/RelaxTools/MFunctionCreater
@@ -36,24 +36,38 @@ Attribute VB_Exposed = False
 ' SOFTWARE.
 '
 '-----------------------------------------------------------------------------------------------------
-' Power Query M functions Csv Class
+' Power Query M Language Csv Class
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
 '---------------------------------------
 ' Document
 '---------------------------------------
-Public Function Document(f As String, ParamArray param() As Variant) As MTable
+Public Function Document(f As String, Optional m As Variant) As MTable
 
-    Dim sb As StringBuilder
-    Dim v As Variant
+'    Dim sb As StringBuilder
+'    Dim v As Variant
     
-    Set sb = New StringBuilder
-
-    For Each v In param
-        sb.Append v
-    Next
+'    Set sb = New StringBuilder
+'
+'    For Each v In param
+'        sb.Append v
+'    Next
+'
+'    Set Document = Constructor(New MTable, GetClassName & "Document(" & f & ", [" & sb.ToJoin(", ") & "])")
     
-    Set Document = Constructor(New MTable, GetClassName & "Document(" & f & ", [" & sb.ToJoin(", ") & "])")
+    Dim strMFunc As String
+    
+    If IsMissing(m) Then
+        strMFunc = ""
+    Else
+        If TypeOf m Is MRecord Then
+            strMFunc = ", " & m.ToString()
+        Else
+            strMFunc = ", " & CStr(m)
+        End If
+    End If
+    
+    Set Document = Constructor(New MTable, GetClassName & "Document(" & f & strMFunc & ")")
 
 End Function
 '---------------------------------------
