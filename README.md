@@ -1,8 +1,8 @@
 # MLangBuilder
-Power Querry M Language Builder For VBA
+Power Querry M Language Builder For VBA  
 VBA で Powr Query の M言語 を組み立てるときに便利なクラス群
 
-##クラス一覧
+## クラス一覧
 
 | クラス | 説明 |
 ----|---- 
@@ -13,7 +13,7 @@ VBA で Powr Query の M言語 を組み立てるときに便利なクラス群
 | MList | List の組み立てクラス(Collectionラッパークラス)。 |
 | MCommand | 各クラスからM言語を作り出すクラス |
 
-##呼び出しサンプル
+## 呼び出しサンプル
 ```
 '------------------------------------------------
 ' MCommandをVBAで作成する場合のヘルパークラス
