@@ -1,27 +1,29 @@
 # MLangBuilder
 Power Querry M Language Builder For VBA  
-VBA ‚Å Powr Query ‚Ì MŒ¾Œê ‚ğ‘g‚İ—§‚Ä‚é‚Æ‚«‚É•Ö—˜‚ÈƒNƒ‰ƒXŒQ
+VBA ã§ Powr Query ã® Mè¨€èª ã‚’çµ„ã¿ç«‹ã¦ã‚‹ã¨ãã«ä¾¿åˆ©ãªã‚¯ãƒ©ã‚¹ç¾¤
 
-## ƒNƒ‰ƒXˆê——
+â†’Hidennotareã«å¸åã•ã‚Œã¾ã—ãŸ
 
-| ƒNƒ‰ƒX | à–¾ |
+## ã‚¯ãƒ©ã‚¹ä¸€è¦§
+
+| ã‚¯ãƒ©ã‚¹ | èª¬æ˜ |
 ----|---- 
-| MCsv | Csv ‚ÌŠÖ”‚Ì“ü‚éƒNƒ‰ƒXB |
-| MFile | File ‚ÌŠÖ”‚Ì“ü‚éƒNƒ‰ƒXB |
-| MTable | Table ‚ÌŠÖ”‚Ì“ü‚éƒNƒ‰ƒXB |
-| MRecord | Record ‚Ì‘g‚İ—§‚ÄƒNƒ‰ƒX(Dictionaryƒ‰ƒbƒp[ƒNƒ‰ƒX)B |
-| MList | List ‚Ì‘g‚İ—§‚ÄƒNƒ‰ƒX(Collectionƒ‰ƒbƒp[ƒNƒ‰ƒX)B |
-| MCommand | ŠeƒNƒ‰ƒX‚©‚çMŒ¾Œê‚ğì‚èo‚·ƒNƒ‰ƒX |
+| MCsv | Csv ã®é–¢æ•°ã®å…¥ã‚‹ã‚¯ãƒ©ã‚¹ã€‚ |
+| MFile | File ã®é–¢æ•°ã®å…¥ã‚‹ã‚¯ãƒ©ã‚¹ã€‚ |
+| MTable | Table ã®é–¢æ•°ã®å…¥ã‚‹ã‚¯ãƒ©ã‚¹ã€‚ |
+| MRecord | Record ã®çµ„ã¿ç«‹ã¦ã‚¯ãƒ©ã‚¹(Dictionaryãƒ©ãƒƒãƒ‘ãƒ¼ã‚¯ãƒ©ã‚¹)ã€‚ |
+| MList | List ã®çµ„ã¿ç«‹ã¦ã‚¯ãƒ©ã‚¹(Collectionãƒ©ãƒƒãƒ‘ãƒ¼ã‚¯ãƒ©ã‚¹)ã€‚ |
+| MCommand | å„ã‚¯ãƒ©ã‚¹ã‹ã‚‰Mè¨€èªã‚’ä½œã‚Šå‡ºã™ã‚¯ãƒ©ã‚¹ |
 
-## ŒÄ‚Ño‚µƒTƒ“ƒvƒ‹
+## å‘¼ã³å‡ºã—ã‚µãƒ³ãƒ—ãƒ«
 ```
 '------------------------------------------------
-' MCommand‚ğVBA‚Åì¬‚·‚éê‡‚Ìƒwƒ‹ƒp[ƒNƒ‰ƒX
+' MCommandã‚’VBAã§ä½œæˆã™ã‚‹å ´åˆã®ãƒ˜ãƒ«ãƒ‘ãƒ¼ã‚¯ãƒ©ã‚¹
 '------------------------------------------------
 Sub Sample()
 
     '-----------------------------------
-    ' MCommand‚ğ‘ã“ü‚¹‚¸‚Éì¬‚·‚éê‡
+    ' MCommandã‚’ä»£å…¥ã›ãšã«ä½œæˆã™ã‚‹å ´åˆ
     '-----------------------------------
     Dim t1 As MTable
     Dim t2 As MTable
@@ -37,13 +39,13 @@ Sub Sample()
     m1.Append t3
     Debug.Print m1.ToString
     
-    'Œ‹‰Ê
+    'çµæœ
     'let Source1 = Table.PromoteHeaders(Table.Skip(Csv.Document(File.Contents("C:\Test.csv"),
     '              [Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.Csv]), 2), [PromoteAllScalars=true]) in Source1
 
     
     '-----------------------------------
-    ' MCommand‚É‘ã“ü‚µ‚Äì¬‚·‚éê‡
+    ' MCommandã«ä»£å…¥ã—ã¦ä½œæˆã™ã‚‹å ´åˆ
     '-----------------------------------
     Dim m2 As MCommand
     Set m2 = New MCommand
@@ -54,18 +56,18 @@ Sub Sample()
 
     Debug.Print m2.ToString
 
-    'Œ‹‰Ê
+    'çµæœ
     'let Source1 = Csv.Document(File.Contents("C:\Test.csv"), [Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
     '    Source2 = Table.Skip(Source1, 2),
     '    Source3 = Table.PromoteHeaders(Source2, [PromoteAllScalars=true]) in Source3
 
 
     '-----------------------------------
-    ' MRecord/MList‚ğ—p‚¢‚½ƒTƒ“ƒvƒ‹
+    ' MRecord/MListã‚’ç”¨ã„ãŸã‚µãƒ³ãƒ—ãƒ«
     '-----------------------------------
     Dim m3 As MCommand
     
-    'MRecord(MŒ¾Œê‚ÌRecord) ‚Í Dictionary‚ğWrap‚µ‚½‚à‚ÌBg—p•û–@‚ÍDictionary“¯“™B
+    'MRecord(Mè¨€èªã®Record) ã¯ Dictionaryã‚’Wrapã—ãŸã‚‚ã®ã€‚ä½¿ç”¨æ–¹æ³•ã¯DictionaryåŒç­‰ã€‚
     Dim rec As MRecord
     Set rec = New MRecord
             
@@ -75,7 +77,7 @@ Sub Sample()
     rec.Add "Column4", """ADDRESS"""
     rec.Add "Column5", """TEL"""
 
-    'MList(MŒ¾Œê‚ÌList) ‚Í Collection‚ğWrap‚µ‚½‚à‚ÌBg—p•û–@‚ÍCollection‚Æ“¯“™B
+    'MList(Mè¨€èªã®List) ã¯ Collectionã‚’Wrapã—ãŸã‚‚ã®ã€‚ä½¿ç”¨æ–¹æ³•ã¯Collectionã¨åŒç­‰ã€‚
     Dim lst As MList
     Set lst = New MList
     lst.Add rec
@@ -89,7 +91,7 @@ Sub Sample()
 
     Debug.Print m3.ToString
 
-    'Œ‹‰Ê
+    'çµæœ
     'let Source1 = Csv.Document(File.Contents("C:\Test.csv"), [Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
     '    Source2 = Table.Skip(Source1, 2),
     '    Source3 = Table.InsertRows(Source2, 0, {[Column1="No.", Column2="NAME", Column3="AGE", Column4="ADDRESS", Column5="TEL"]}),
