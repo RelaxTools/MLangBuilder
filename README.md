@@ -2,7 +2,7 @@
 Power Querry M Language Builder For VBA  
 VBA で Powr Query の M言語 を組み立てるときに便利なクラス群
 
-→Hidennotareに吸収されました
+** →Hidennotareに吸収されました **
 
 ## クラス一覧
 
